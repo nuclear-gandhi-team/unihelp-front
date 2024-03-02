@@ -2,7 +2,6 @@
 
 import { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { Toaster } from "@/components/ui/sonner";
 
@@ -12,7 +11,6 @@ const Provider = ({ children }: { children: ReactNode }) => {
     <QueryClientProvider client={queryClient}>
       {children}
       <Toaster />
-      <SpeedInsights />
     </QueryClientProvider>
   );
 };
