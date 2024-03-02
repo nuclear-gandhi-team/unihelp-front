@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
 
+import useRegisterTeacherMutation from "@/api/hooks/mutation/useRegisterTeacherMutation";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -29,7 +30,19 @@ const Page = () => {
     resolver: zodResolver(RegistrationSchema),
   });
 
-  const handleSubmit = () => {};
+  const { mutate: credentials } = useRegisterTeacherMutation({
+    onSuccessfulCallback: () => router.push("./login"),
+  });
+
+  const handleSubmit = (data: z.infer<typeof RegistrationSchema>) => {
+    credentials({
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      password: data.password,
+      confirmPassword: data.passwordConfirmation,
+    });
+  };
 
   return (
     <Form {...form}>

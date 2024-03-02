@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
 
+import useRegisterStudentMutation from "@/api/hooks/mutation/useRegisterStudentMutation";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -20,11 +21,11 @@ const RegistrationSchema = z.object({
   firstName: z.string().min(1, { message: "First name is required" }),
   lastName: z.string().min(1, { message: "Last name is required" }),
   email: z.string().min(1, { message: "Email is required" }),
+  faculty: z.string().min(1, { message: "Faculty is required" }),
   group: z.string().min(1, { message: "Group is required" }),
-  course: z
+  year: z
     .number()
     .min(1, { message: "You need to mention your year of studying" }),
-  faculty: z.string().min(1, { message: "Faculty is required" }),
   password: z.string().min(3, { message: "Password is required" }),
   passwordConfirmation: z.string().min(3, { message: "Confirm your password" }),
 });
@@ -35,7 +36,22 @@ const Page = () => {
     resolver: zodResolver(RegistrationSchema),
   });
 
-  const handleSubmit = () => {};
+  const { mutate: credentials } = useRegisterStudentMutation({
+    onSuccessfulCallback: () => router.push("./login"),
+  });
+
+  const handleSubmit = (data: z.infer<typeof RegistrationSchema>) => {
+    credentials({
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      faculty: data.faculty,
+      group: data.group,
+      year: data.year,
+      password: data.password,
+      confirmPassword: data.passwordConfirmation,
+    });
+  };
 
   return (
     <Form {...form}>
@@ -124,7 +140,7 @@ const Page = () => {
           />
           <FormField
             control={form.control}
-            name="course"
+            name="year"
             render={({ field }) => (
               <FormItem className="w-5/12">
                 <FormLabel color="black">Year</FormLabel>
