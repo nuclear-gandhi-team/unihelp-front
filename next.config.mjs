@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     env: {
-        API_URL: 'https://unihelp.azurewebsites.net/api',
+        API_URL: 'https://unihelpback.azurewebsites.net/api',
     }
 };
 

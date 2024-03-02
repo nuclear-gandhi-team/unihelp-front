@@ -14,6 +14,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
@@ -23,9 +24,12 @@ const RegistrationSchema = z.object({
   email: z.string().min(1, { message: "Email is required" }),
   faculty: z.string().min(1, { message: "Faculty is required" }),
   group: z.string().min(1, { message: "Group is required" }),
-  year: z
-    .number()
-    .min(1, { message: "You need to mention your year of studying" }),
+  course: z
+    .string()
+    .transform((value) => parseInt(value, 10))
+    .refine((value) => !isNaN(value) && value >= 1 && value <= 9, {
+      message: "You need to mention your year of studying",
+    }),
   password: z.string().min(3, { message: "Password is required" }),
   passwordConfirmation: z.string().min(3, { message: "Confirm your password" }),
 });
@@ -47,7 +51,7 @@ const Page = () => {
       email: data.email,
       faculty: data.faculty,
       group: data.group,
-      year: data.year,
+      course: data.course,
       password: data.password,
       confirmPassword: data.passwordConfirmation,
     });
@@ -140,7 +144,7 @@ const Page = () => {
           />
           <FormField
             control={form.control}
-            name="year"
+            name="course"
             render={({ field }) => (
               <FormItem className="w-5/12">
                 <FormLabel color="black">Year</FormLabel>
@@ -148,6 +152,7 @@ const Page = () => {
                   <Input placeholder="3" {...field} />
                 </FormControl>
                 <FormDescription>Year of studying</FormDescription>
+                <FormMessage />
               </FormItem>
             )}
           />

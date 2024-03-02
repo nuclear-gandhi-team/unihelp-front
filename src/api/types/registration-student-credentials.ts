@@ -4,7 +4,7 @@ export type StudentRegistrationCredentials = {
   email: string;
   faculty: string;
   group: string;
-  year: number;
+  course: number;
   password: string;
   confirmPassword: string;
 };

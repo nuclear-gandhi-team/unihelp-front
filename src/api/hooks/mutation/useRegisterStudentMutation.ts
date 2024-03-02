@@ -21,8 +21,8 @@ const useStudentRegisterMutation = ({
           onSuccessfulCallback();
         }
       },
-      onError: () => {
-        toast("Failed to create account, please try again.");
+      onError: (error: any) => {
+        toast(`Failed to create account: ${error.response.data.error}`);
       },
     },
   );
