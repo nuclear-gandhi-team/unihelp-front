@@ -4,7 +4,7 @@ import { useMutation } from "react-query";
 import { toast } from "sonner";
 
 import { User } from "@/api/services/user";
-import { TeacherRegistrationCredentials } from "@/api/types/registration-student-credentials";
+import { TeacherRegistrationCredentials } from "@/api/types/registration-teacher-credentials";
 
 const useTeacherRegisterMutation = ({
   onSuccessfulCallback,
