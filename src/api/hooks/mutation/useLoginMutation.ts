@@ -31,8 +31,8 @@ const useLoginMutation = ({
         onSuccessfulCallback();
       }
     },
-    onError: (error) => {
-      toast(`Failed to log in: ${error.message}`);
+    onError: (error: any) => {
+      toast(`Failed to log in: ${error.response.data.error}`);
     },
   });
 
