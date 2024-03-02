@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
 
+import useLoginMutation from "@/api/hooks/mutation/useLoginMutation";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -27,7 +28,13 @@ const Page = () => {
     resolver: zodResolver(LoginSchema),
   });
 
-  const handleSubmit = () => {};
+  const { mutate: credentials } = useLoginMutation({
+    onSuccessfulCallback: () => router.push("././"),
+  });
+
+  const handleSubmit = (data: z.infer<typeof LoginSchema>) => {
+    credentials({ email: data.email, password: data.password });
+  };
 
   return (
     <Form {...form}>
