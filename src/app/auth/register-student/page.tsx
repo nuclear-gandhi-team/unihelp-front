@@ -14,7 +14,6 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
@@ -152,7 +151,6 @@ const Page = () => {
                   <Input placeholder="3" {...field} />
                 </FormControl>
                 <FormDescription>Year of studying</FormDescription>
-                <FormMessage />
               </FormItem>
             )}
           />
