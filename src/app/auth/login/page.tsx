@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -18,7 +17,7 @@ import {
 import { Input } from "@/components/ui/input";
 
 const LoginSchema = z.object({
-  username: z.string().min(1, { message: "Username is required" }),
+  email: z.string().min(1, { message: "Username is required" }),
   password: z.string().min(1, { message: "Password is required" }),
 });
 
@@ -46,17 +45,18 @@ const Page = () => {
         </div>
         <FormField
           control={form.control}
-          name="username"
+          name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel color="black">Username</FormLabel>
+              <FormLabel color="black">Email</FormLabel>
               <FormControl>
-                <Input placeholder="Hjyup" {...field} />
+                <Input
+                  type="email"
+                  placeholder="yourmail@example.com"
+                  {...field}
+                />
               </FormControl>
-              <FormDescription>
-                This is your username that you used for registration (not a
-                public name).
-              </FormDescription>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -67,7 +67,7 @@ const Page = () => {
             <FormItem>
               <FormLabel color="black">Password</FormLabel>
               <FormControl>
-                <Input type="password" placeholder="••••••••••" {...field} />
+                <Input type="password" placeholder="••••••••••••" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -78,7 +78,7 @@ const Page = () => {
           <Button
             variant="ghost"
             type="button"
-            onClick={() => router.push("./register")}
+            onClick={() => router.push("./register-student")}
           >
             Register
           </Button>
