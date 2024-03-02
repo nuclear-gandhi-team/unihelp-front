@@ -1,9 +1,7 @@
 import axiosInstance from "@/api/axios-wrapper";
 import { LoginCredentials } from "@/api/types/login-credentials";
-import {
-  StudentRegistrationCredentials,
-  TeacherRegistrationCredentials,
-} from "@/api/types/registration-student-credentials";
+import { StudentRegistrationCredentials } from "@/api/types/registration-student-credentials";
+import { TeacherRegistrationCredentials } from "@/api/types/registration-teacher-credentials";
 
 export class User {
   static postStudentRegistrationCredentials = async (
