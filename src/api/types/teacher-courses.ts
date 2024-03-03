@@ -1,6 +1,6 @@
-export type TeacherClassesTableProps = {
+export type TeacherCourse = {
+  classId: number;
   className: string;
   classesNumber: number;
   studentsCount: number;
-  classId: number;
 };
