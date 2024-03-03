@@ -25,8 +25,8 @@ const generateFormSchema = (questionsCount: number) => {
     correctAnswer: z.string().min(1, "Correct answer is required."),
   });
 
-  for (let i = 0; i < questionsCount; i++) {
-    const questionKey = `question${i + 1}`;
+  for (let i = 1; i <= questionsCount; i++) {
+    const questionKey = `question${i}`;
     testQuestions[questionKey] = questionSchema;
   }
 
@@ -56,16 +56,10 @@ const Page = () => {
     resolver: zodResolver(formSchema),
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    console.log(convertTestFormat(values));
-  }
-
-  const questionDivs = Array.from({ length: questionsCount }, (_, index) => (
-    <div key={index + 1}>
-      <CreateQuestionForm id={index + 1} form={form} />
-    </div>
-  ));
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
+    const data = convertTestFormat(values);
+    console.log(data);
+  };
 
   return (
     <div className="w-2/3 p-10">
@@ -84,7 +78,9 @@ const Page = () => {
         >
           <CreateMainInfoForm form={form} />
           <FormLabel>Questions</FormLabel>
-          {questionDivs}
+          {Array.from({ length: questionsCount }, (_, index) => (
+            <CreateQuestionForm key={index} id={index + 1} form={form} />
+          ))}
           <CreateQuestionButton
             onClick={() => {
               setQuestionsCount((questionsCount) => questionsCount + 1);

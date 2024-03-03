@@ -1,6 +1,11 @@
 import { UseFormReturn } from "react-hook-form";
 
-import { FormControl, FormField, FormItem } from "@/components/ui/form";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+} from "@/components/ui/form";
 import {
   Select,
   SelectContent,
@@ -21,6 +26,7 @@ const CreateFormSelect = ({
     name={`testQuestions.question${id}.correctAnswer`}
     render={({ field }) => (
       <FormItem>
+        <FormLabel>Correct answer</FormLabel>
         <Select onValueChange={field.onChange}>
           <FormControl>
             <SelectTrigger>
