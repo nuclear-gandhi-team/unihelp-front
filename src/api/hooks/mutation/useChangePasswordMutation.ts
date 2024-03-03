@@ -14,7 +14,6 @@ const useChangePasswordMutation = ({
 }) => {
   const account = useAccount();
   account.check.checkCredentials();
-  console.log(account.token);
   const { mutate, isLoading, isError, data } = useMutation<
     any,
     Error,

@@ -8,7 +8,7 @@ const useAccount = () => {
 
   const redirectToLogin = () => {
     if (!token) {
-      router.push("/auth/login");
+      setTimeout(() => router.push("/auth/login"), 50);
     }
   };
 
