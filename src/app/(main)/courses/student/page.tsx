@@ -1,10 +1,17 @@
-import {
-  columns,
-  studentCourses,
-} from "@/components/tables/student-course-table/columns";
+"use client";
+
+import useAllStudentCoursesQuery from "@/api/hooks/query/useAllStudentCoursesQuery";
+import MainSkeleton from "@/components/skeleton/main-skeleton";
+import { columns } from "@/components/tables/student-course-table/columns";
 import { DataTable } from "@/components/tables/student-course-table/data-table";
 
 const Page = () => {
+  const [studentCourses, isLoading] = useAllStudentCoursesQuery({});
+
+  if (isLoading) {
+    return <MainSkeleton />;
+  }
+
   return (
     <div className="grid gap-y-5">
       <div>
