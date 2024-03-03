@@ -29,7 +29,7 @@ const Page = () => {
   });
 
   const { mutate: credentials } = useLoginMutation({
-    onSuccessfulCallback: () => router.push("/"),
+    onSuccessfulCallback: () => router.push("/main"),
   });
 
   const handleSubmit = (data: z.infer<typeof LoginSchema>) => {
