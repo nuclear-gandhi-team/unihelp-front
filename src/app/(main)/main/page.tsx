@@ -1,10 +1,12 @@
+"use client";
+
 import {
   columns,
   studentTasks,
 } from "@/components/tables/student-task-table/columns";
 import { DataTable } from "@/components/tables/student-task-table/data-table";
 
-const Home = () => {
+const Layout = () => {
   return (
     <main className="p-20">
       <DataTable columns={columns} data={studentTasks} />
@@ -12,4 +14,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Layout;
