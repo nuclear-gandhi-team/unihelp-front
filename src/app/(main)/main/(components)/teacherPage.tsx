@@ -34,7 +34,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
-const Page = () => {
+const TeacherPage = () => {
   const TeacherModalSchemaCreate = z.object({
     className: z.string().min(1, { message: "Class name is required" }),
     classDescription: z
@@ -207,4 +207,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default TeacherPage;
